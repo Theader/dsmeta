@@ -1,4 +1,5 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import NotificationButton from '../NotificationButton';
@@ -10,6 +11,11 @@ function SalesCard() {
 
     const [mindate,setMindate] = useState(min);
     const [maxdate,setMaxdate] = useState(new Date());
+    useEffect(()=>{
+       axios.get("https://theader-dsmovie.herokuapp.com/movies")
+       .then(response=> {console.log(response.data);
+    });
+    },[]);
     return (
         <>
             <div className="dsmeta-card">
