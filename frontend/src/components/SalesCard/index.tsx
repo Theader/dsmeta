@@ -15,7 +15,7 @@ function SalesCard() {
     const [maxdate, setMaxdate] = useState(new Date());
     const [sales, setSales] = useState<Sale[]>([]);
     useEffect(() => {
-        axios.get(`${BASE_URL}/movies`)
+        axios.get(`${BASE_URL}/sales`)
             .then(response => {
                 setSales(response.data.content)
             });
@@ -59,15 +59,15 @@ function SalesCard() {
                                 sales.map(sale => {
                                     return (
                                         <tr key={sale.id}>
-                                            <td className="show992">#341</td>
-                                            <td className="show576">08/07/2022</td>
-                                            <td>{sale.title}</td>
-                                            <td className="show992">15</td>
-                                            <td className="show992">11</td>
-                                            <td>R$ 55300.00</td>
+                                            <td className="show992">{sale.id}</td>
+                                            <td className="show576">{sale.date}</td>
+                                            <td>{sale.sellerName}</td>
+                                            <td className="show992">{sale.visited}</td>
+                                            <td className="show992">{sale.deals}</td>
+                                            <td>{sale.amount}</td>
                                             <td>
                                                 <div className="dsmeta-red-btn-container">
-                                                    <NotificationButton />
+                                                    <NotificationButton saleId={sale.id} />
                                                 </div>
                                             </td>
                                         </tr>
